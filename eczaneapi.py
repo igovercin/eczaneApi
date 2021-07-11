@@ -4,7 +4,6 @@ import json
 IL_INPUT=input("İl giriniz:")
 ILCE_INPUT=input("İlçe giriniz:")
 
-
 conn = http.client.HTTPSConnection("api.collectapi.com")
 
 headers = {
