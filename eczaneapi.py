@@ -1,10 +1,8 @@
-import http.client
 import json
+import requests
 
 IL_INPUT=input("İl giriniz:")
 ILCE_INPUT=input("İlçe giriniz:")
-
-conn = http.client.HTTPSConnection("api.collectapi.com")
 
 headers = {
     'content-type': "application/json",
@@ -13,12 +11,8 @@ headers = {
 
 STR=("/health/dutyPharmacy?ilce=%s&il=%s" %(ILCE_INPUT,IL_INPUT))
 
-conn.request("GET", STR, headers=headers)
-
-res = conn.getresponse()
-data = res.read()
-data=data.decode("utf-8")
-
+r=requests.get("https://api.collectapi.com"+STR,headers=headers)
+data=r.text
 data=json.loads(data)
 
 if data["success"]:
